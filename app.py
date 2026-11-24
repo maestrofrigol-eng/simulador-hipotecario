@@ -1,4 +1,4 @@
-"""Punto de entrada ligero de la aplicación Streamlit (Simulador Hipotecario marca blanca)."""
+"""Punto de entrada ligero de la aplicación Streamlit."""
 
 from __future__ import annotations
 
@@ -9,7 +9,6 @@ import streamlit as st
 from engine import run_simulation
 from ui.branding import BRAND
 from ui.components.amortization_tab import render_amortization_tab
-from ui.components.cover_tab import render_cover_tab
 from ui.components.inputs_panel import render_inputs_sidebar
 from ui.components.summary_tab import render_summary_tab
 from ui.theme import CUSTOM_CSS
@@ -56,15 +55,13 @@ def main() -> None:
         st.error(f"Parámetros inválidos: {exc}")
         return
 
-    tab_summary, tab_schedule, tab_cover = st.tabs(
-        ["Simulador", "Tabla de Amortización", "Carátula CONDUSEF"]
+    tab_summary, tab_schedule = st.tabs(
+        ["Simulador", "Tabla de Amortización"]
     )
     with tab_summary:
         render_summary_tab(response)
     with tab_schedule:
         render_amortization_tab(response)
-    with tab_cover:
-        render_cover_tab(response)
 
     st.markdown(
         f'<div class="footer-note">{BRAND.footer_disclaimer}</div>',
