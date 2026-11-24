@@ -16,13 +16,13 @@ class BrandConfig:
 
     app_title: str = "Simulador Hipotecario"
     app_subtitle: str = (
-        "Cotización integral de financiamiento residencial, gastos de originación, "
-        "tabla de amortización y Carátula CONDUSEF."
+        "Cotización de financiamiento residencial, gastos de originación, "
+        "tabla de amortización."
     )
-    institution_name: str = "Institución Financiera (Marca Blanca)"
+    institution_name: str = "Proyecto"
     page_icon: str = "🏠"
     logo_path: Optional[str] = None  # Ejemplo: "assets/logo.png"
-    logo_placeholder_text: str = "TU LOGOTIPO AQUÍ"
+    logo_placeholder_text: str = ":)"
     currency_code: str = "MXN"
     footer_disclaimer: str = (
         "Simulación de carácter informativo. Las cifras, tasas, seguros y CAT "

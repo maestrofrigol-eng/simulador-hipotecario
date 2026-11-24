@@ -75,14 +75,7 @@ CUSTOM_CSS = f"""
         letter-spacing: 0.05em;
         margin-bottom: 0.4rem;
     }}
-    /* Tarjeta regulatoria de Carátula CONDUSEF */
-    .cover-box {{
-        background-color: {PALETTE["bg_surface"]};
-        border: 1px solid {PALETTE["border"]};
-        border-radius: 8px;
-        padding: 1rem 1.25rem;
-        margin-bottom: 1rem;
-    }}
+
     .footer-note {{
         color: {PALETTE["text_muted"]};
         font-size: 0.82rem;
