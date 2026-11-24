@@ -1,4 +1,4 @@
-"""Panel lateral de captura de entradas, restricciones condicionales y presets TC1-TC3."""
+"""Panel lateral de captura de entradas, restricciones condicionales"""
 
 from __future__ import annotations
 
@@ -67,70 +67,7 @@ def _apply_preset(values: dict[str, Any]) -> None:
         st.session_state[key] = values.get(key, default_val)
 
 
-def _preset_tc1() -> dict[str, Any]:
-    return {
-        "quote_date": date(2026, 11, 18),
-        "client_name": "Escenario TC1 — Adquisición Tradicional",
-        "program": CreditProgram.ADQUISICION_TRADICIONAL,
-        "campaign": Campaign.NINGUNA,
-        "calc_mode": CalcMode.POR_VALOR_INMUEBLE,
-        "base_value": 3_000_000.0,
-        "destructible_value": 2_400_000.0,
-        "economic_activity": EconomicActivity.EMPLEADO,
-        "scheme": ProductScheme.VALORA,
-        "term": LoanTerm.ANIOS_20,
-        "risk_index": 1,
-        "commission_type": CommissionType.CONTRATACION_CREDITO,
-        "insurance_option": InsuranceOption.SEGUROS_INCLUIDOS,
-        "prepay_mode": PrepayMode.DISMINUCION_PLAZO,
-        "prepayments_rows": [],
-    }
 
-
-def _preset_tc2() -> dict[str, Any]:
-    return {
-        "quote_date": date(2026, 11, 18),
-        "client_name": "Escenario TC2 — Apoyo Infonavit Green",
-        "program": CreditProgram.APOYO_INFONAVIT,
-        "campaign": Campaign.HIPOTECA_GREEN,
-        "calc_mode": CalcMode.POR_INGRESOS,
-        "base_value": 60_000.0,
-        "destructible_value": 0.0,
-        "infonavit_salary": 45_000.0,
-        "economic_activity": EconomicActivity.EMPLEADO,
-        "scheme": ProductScheme.PAGOS_OPORTUNOS,
-        "term": LoanTerm.ANIOS_15,
-        "risk_index": 1,
-        "commission_type": CommissionType.CONTRATACION_CREDITO,
-        "insurance_option": InsuranceOption.SEGUROS_INCLUIDOS,
-        "prepay_mode": PrepayMode.DISMINUCION_PLAZO,
-        "prepayments_rows": [{"Periodo": 12, "Monto": 100_000.0}],
-    }
-
-
-def _preset_tc3() -> dict[str, Any]:
-    return {
-        "quote_date": date(2026, 11, 18),
-        "client_name": "Escenario TC3 — Pasivo Hipotecario",
-        "program": CreditProgram.PASIVO_HIPOTECARIO,
-        "campaign": Campaign.NINGUNA,
-        "calc_mode": CalcMode.POR_IMPORTE_CREDITO,
-        "base_value": 2_000_000.0,
-        "destructible_value": 1_800_000.0,
-        "economic_activity": EconomicActivity.INDEPENDIENTE,
-        "scheme": ProductScheme.VALORA,
-        "term": LoanTerm.ANIOS_10,
-        "risk_index": 1,
-        "commission_type": CommissionType.PAGO_ANTICIPADO,
-        "insurance_option": InsuranceOption.SEGUROS_INCLUIDOS,
-        "finance_notary_fees": True,
-        "use_manual_tax": True,
-        "manual_tax_pct": 2.5,
-        "use_manual_notary": True,
-        "manual_notary_pct": 1.5,
-        "prepay_mode": PrepayMode.DISMINUCION_PAGO,
-        "prepayments_rows": [{"Periodo": 6, "Monto": 50_000.0}],
-    }
 
 
 def _preset_clean() -> dict[str, Any]:
@@ -225,17 +162,6 @@ def render_inputs_sidebar() -> SimulationInput:
     _init_session_state()
 
     with st.sidebar:
-        st.subheader("Escenarios rápidos")
-        c1, c2, c3 = st.columns(3)
-        if c1.button("TC1", use_container_width=True, help="Adquisición Tradicional Valora 20a"):
-            _apply_preset(_preset_tc1())
-            st.rerun()
-        if c2.button("TC2", use_container_width=True, help="Apoyo Infonavit PO 15a Green + Prepago"):
-            _apply_preset(_preset_tc2())
-            st.rerun()
-        if c3.button("TC3", use_container_width=True, help="Pasivo Valora 10a + Gastos Financiados"):
-            _apply_preset(_preset_tc3())
-            st.rerun()
 
         if st.button("Limpiar datos", use_container_width=True):
             _apply_preset(_preset_clean())
